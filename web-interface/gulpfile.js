@@ -9,7 +9,7 @@
 		dist: 'dist',
 		tmp: '.tmp',
 		e2e: 'e2e',
-		publish: 'dist'
+		publish: '../web-server/data'
 	};
 
 	require('require-dir')('./gulp');

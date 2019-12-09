@@ -118,6 +118,6 @@
 	});
 
 	gulp.task('build', ['clean'], function (done) {
-		runSequence(['html', 'images', 'lazy', 'addToHomeScreen', 'fonts', 'misc'], done);
+		runSequence(['html', 'lazy', 'addToHomeScreen', 'fonts', 'misc'], done); // 'images',
 	});
 }());
