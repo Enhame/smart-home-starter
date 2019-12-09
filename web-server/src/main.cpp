@@ -95,7 +95,7 @@ void setup()
       Serial.begin(9600);
       delay(10);
       pinMode(actions.lightPulpPin, OUTPUT);
-      digitalWrite( actions.lightPulpPin, actions.lightPulpPinState);
+      digitalWrite(actions.lightPulpPin, actions.lightPulpPinState);
                
        Serial.println("Connecting to ");
        Serial.println(ssid); 
