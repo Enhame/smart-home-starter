@@ -1,0 +1,26 @@
+////
+/// This is a global variables.
+/// @group Variables
+////
+
+/// width for left nav
+$nav-width: 200px;
+
+/// width for right nav 
+$right-nav-width: 310px;
+
+/// width for left nav mobile view
+$nav-width-mobile: $nav-width + 40px;
+/// height for left nav mobile view
+$nav-height-mobile: 50px;
+
+
+///Small screen
+///@group Screen-Breakpoints
+$screen-small: 768px;
+
+///Large screen
+///@group Screen-Breakpoints
+$screen-large: 1000px;
+
+$col-width: 100%/12;

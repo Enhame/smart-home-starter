@@ -1,0 +1,71 @@
+////
+/// Mixins
+/// @group Mixins
+////
+
+@import 'variables.scss';
+@import "colors.scss";
+
+/// Adding to element width according to column count
+@mixin col-width($columnscount) {
+	width: $col-width * $columnscount;
+}
+
+@mixin desktop() {
+	@media (min-width: $screen-small) { @content; }
+}
+
+@mixin prop($name, $valueMobile, $valueDesktop) {
+	#{$name}: $valueMobile;
+	@include desktop {
+		#{$name}: $valueDesktop;
+	}
+}
+
+/// Adding chevrons
+@mixin chevron($height, $width, $border-color, $body-color) {
+	.chevron {
+		display: inline-block;
+		width: $width;
+		height: $height;
+		position: relative;
+
+		&:before,
+		&:after {
+			display: block;
+			content: "";
+			width: 0;
+			height: $height;
+			border-style: solid;
+			position: absolute;
+		}
+
+		&.left {
+			&:before {
+				right: 0;
+				border-width: ($height/2) $width ($height/2) 0;
+				border-color: transparent $border-color transparent;
+			}
+
+			&:after {
+				left: 1px;
+				border-width: ($height/2) $width ($height/2) 0;
+				border-color: transparent $body-color transparent transparent;
+			}
+		}
+
+		&.right {
+			&:before {
+				right: 0;
+				border-width: ($height/2) 0 ($height/2) $width;
+				border-color: transparent transparent transparent $border-color;
+			}
+
+			&:after {
+				left: -1px;
+				border-width: ($height/2) 0 ($height/2) $width;
+				border-color: transparent transparent transparent $body-color;
+			}
+		}
+	}
+}

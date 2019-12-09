@@ -1,0 +1,119 @@
+﻿@import '../../styles/colors.scss';
+
+.modal {
+
+	.modal-content {
+		border-radius: 0;
+	}
+
+	.modal-header,
+	.modal-footer {
+		border: none;
+	}
+
+	.modal-header {
+		padding: 5px 15px;
+		font-size: 18px;
+	}
+
+	.modal-body {
+		font-size: 18px;
+	}
+
+	.modal-footer {
+		padding-top: 0;
+		text-align: center;
+	}
+
+	.btn-ok {
+		font-size: 18px;
+		font-family: 'Bliss Bold', Arial;
+		background: $c-alabaster;
+		border: 1px solid $c-silver;
+		padding: 15px;
+		margin: 0;
+		width: 100%;
+		max-width: 300px;
+	}
+
+	.modal-actions {
+		width: 100%;
+		position: relative;
+		padding: 15px;
+		text-align: center;
+
+		.btn-action {
+			width: 100%;
+			margin: 5px 0;
+		}
+
+		.btn-container:first-child {
+			margin-bottom: 10px;
+		}
+
+		@media (min-width: $screen-small) {
+			.btn-container:first-child {
+				margin-bottom: 0;
+			}
+
+			.btn-container {
+				margin: 0;
+				float: right;
+				width: 49%;
+
+				&:last-child {
+					padding-right: 0;
+					margin-right: 2%;
+				}
+
+				&.left {
+					float: none;
+				}
+			}
+		}
+	}
+
+	.confirmation {
+		.actions {
+			@media(min-width: $screen-small) {
+				min-width: 250px;
+				margin: 0 auto;
+				display: inline-block;
+			}
+		}
+	}
+	/// Error modal styles
+	.error {
+		.modal-header {
+			background: $c-monza;
+			color: $c-white;
+		}
+
+		.modal-body {
+			color: $c-monza;
+		}
+
+		.btn-action {
+			width: 100%;
+			margin: 5px 0;
+
+			@media(min-width: $screen-small) {
+				width: 45%;
+			}
+		}
+	}
+
+	.notification {
+		.actions {
+			@media(min-width: $screen-small) {
+				min-width: 250px;
+				margin: 0 auto;
+				display: inline-block;
+			}
+		}
+	}
+}
+.confirm-chaperone-modal {
+	padding-top: 40px;
+}
+

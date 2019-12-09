@@ -1,0 +1,40 @@
+@import "../../core/styles/mixins";
+@import "../../core/styles/colors";
+
+.shell {
+	.mdl-layout__header {
+		background-color: $c-primary;
+	}
+	.mdl-layout__content {
+		padding: 80px 20px 20px 20px;
+
+		@include desktop() {
+			padding: 20px;
+		}
+	}
+
+	.mdl-layout__drawer-button {
+		color: $c-white;
+	}
+
+	.heading-background {
+		height: 56px;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		background-color: $c-primary;
+		display: flex;
+		align-items: center;
+		flex-direction: row-reverse;
+		color: $c-white;
+
+		@include desktop() {
+			display: none;
+		}
+	}
+
+	.data-block {
+		margin-right: 20px;
+	}
+}

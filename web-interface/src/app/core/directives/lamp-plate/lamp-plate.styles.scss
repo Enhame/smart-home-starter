@@ -1,0 +1,37 @@
+@import "../../styles/images";
+@import "../../styles/mixins";
+
+.lamp-plate {
+	.mdl-card {
+		background-color: transparent;
+		background-image: url($lamp-image);
+		width: auto;
+
+		@include desktop() {
+			max-width: 300px;
+		}
+	}
+
+	.mdl-card__supporting-text, .mdl-card__title-text {
+		color: $c-white;
+	}
+
+	.mdl-card__supporting-text {
+		background-color: $c-primary-transparent;
+	}
+
+	.switch-container {
+		background-color: $c-white;
+		padding: 5px 10px 5px 10px;
+		border-radius: 25px;
+		display: inline-block;
+	}
+
+	.ats-switch.switch-mini {
+		border-radius: 10px;
+	}
+
+	.ats-switch span.switch-left {
+		background-color: $c-primary;
+	}
+}

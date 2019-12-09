@@ -1,0 +1,16 @@
+﻿<div ng-class="vm.data.typeCss" data-test-modal>
+	<div class="modal-header" data-test-confirmation-title>
+		<span click-target-name="Close" class="glyphicon glyphicon-remove-sign glyphicon-close" ng-click="vm.close()" data-test-modal-close></span>
+		{{vm.data.header}}
+	</div>
+	<div class="modal-body" data-test-confirmation-modal ng-bind-html="vm.data.message">
+	</div>
+	<div class="modal-actions">
+		<div ng-if="vm.data.cancel" class="action">
+			<button click-target-name="Cancel" class="btn btn-action" data-test-modal-btn-cancel ng-click="vm.close()">cancel</button>
+		</div>
+		<div class="action">
+			<button click-target-name="Ok" class="btn btn-action" data-test-modal-btn-ok ng-click="vm.ok()">{{vm.data.okName}}</button>
+		</div>
+	</div>
+</div>

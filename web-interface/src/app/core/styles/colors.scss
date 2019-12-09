@@ -1,0 +1,111 @@
+////
+/// Colors
+/// @group Colors
+/// @type color
+////
+
+$c-link-default: #0275d8;
+$c-blue: #0000ff;
+///For example: used for button's hover effect on login page
+///@name Tamarillo
+$c-tamarillo: #83101E;
+
+///@name Black
+$c-black: #000000;
+
+$c-pink: #FFCCCD;
+
+///For example: used for project's name hover effect on consultations page
+///@name Mine Shaft
+$c-mine-shaft: #333333;
+
+///Used for all shaded text-info
+///For example: dates on experts card, manager's info
+///@name Dove Gray
+$c-dove-gray: #666666;
+
+///Used for modal's border
+///@name Dusty Gray
+///@todo Check for color doubling
+$c-dusty-gray: #999999;
+
+///@name Cod Gray
+$c-cod-gray: #1E1E1E;
+
+///Standard button's border color
+///@name Silver Chalice
+///@todo Check for color doubling
+$c-silver-chalice: #A9A9A9;
+
+///Standard filter check ico color
+///@name Silver Dark
+$c-silver-dark: #AAA;
+
+///Used for borders and neutral background
+///For example: neutral-label
+///@name Gray
+$c-gray: #808080;
+
+///Used to accent important elements
+///For example: action buttons hover effect
+///@name Monza
+$c-monza: #CB012F;
+
+///Used to accent important elements
+///For example: time select buttons
+///@name Crimson
+$c-crimson: #CC0000;
+
+
+///Mostly used for borders
+///For example: plate border, button border
+///@name Alto
+$c-alto: #D7D7D7;
+
+///Mostly used for background
+///For example: expert plate, co-ui-route-tabs
+///@name Concrete
+///@todo Check for color doubling
+$c-concrete: #F2F2F2;
+
+///Borders
+///For example: modal borders, new project borders
+///@name Silver
+$c-silver: #CCCCCC;
+
+$c-silver-light: #eeeeee;
+
+///@name Alabaster
+///@todo Possibly should be deleted
+$c-alabaster: #FAFAFA; //not sure
+
+
+///Used for shaded text
+///For example: expert plate job title
+///@name Boulder
+$c-boulder: #777777;
+
+///@name White
+$c-white: #FFFFFF;
+
+///@timeline in desktop calendar
+$c-salmon: #FF806E;
+
+///@first-open-window background color
+$c-mercury: #E4E4E4;
+
+$c-cream: #ffffcc;
+
+$c-green: #008000;
+
+$c-yellow: #D8BD30;
+
+$c-link-color: #337ab7;
+
+$nav-background: #333333;
+$nav-item-active: #000;
+$nav-background-white: #ffffff;
+$font-menu-gray: #999999;
+$c-success: #009900;
+$c-primary: #084061;
+$c-primary-transparent: rgba(8, 64, 97, 0.6);
