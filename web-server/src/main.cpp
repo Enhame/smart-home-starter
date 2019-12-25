@@ -4,22 +4,27 @@
 #include <ArduinoJson.h>
 #include <SimpleDHT.h>
 #include <ActionsReponse.h>
-#include <OneButton.h>
+#include <RGBController.h>
+#include <JsonConfigManager.h>
 
 const char *ssid =  "Enh-Fi";
 const char *pass =  "wanrltwhesoyam1";
 
 ActionsResponse actions;
 
-#define dht_pin 13
-#define btn_pin 5
+#define dht_pin 14
+#define red_pin 15
+#define green_pin 12
+#define blue_pin 13
 
 boolean btnState = false;
 
 SimpleDHT11 dht11(dht_pin);
 WiFiClient client;
 ESP8266WebServer server(80);
+JsonConfigManager configManager;
 HTTPMethod methods;
+RGBController rgbController(red_pin, green_pin, blue_pin);
 
 File readFile(String path) {
   Serial.print("requested file: ");
@@ -37,22 +42,30 @@ void onHome() {
 }
 
 void onAction() {
+  server.sendHeader("Access-Control-Allow-Origin", "*");
   StaticJsonDocument<500> doc;
+  Serial.println(server.arg("plain"));
   DeserializationError error = deserializeJson(doc, server.arg("plain"));
   if (error)
     Serial.println(F("Failed to read file, using default configuration"));
 
   // Copy values from the JsonDocument to the Config 
-  boolean state = doc["state"];
-  Serial.println(state);
-  digitalWrite(actions.lightPulpPinState, state);
-  server.sendHeader("Access-Control-Allow-Origin", "*");
+  String deviceType = doc["deviceType"];
+  Serial.println(deviceType);
+  if (deviceType == actions.DEVICE_RGB) {
+    rgbController.handleRequest(doc);
+  }
+
   server.send(200);
 }
 
 void onActionsList() {
   server.sendHeader("Access-Control-Allow-Origin", "*");
-  server.send(200, "text/json", actions.getActionsJSON());
+  StaticJsonDocument<44000> config = configManager.getConfig();
+  String result;
+  serializeJson(config, result);
+  Serial.println(result);
+  server.send(200, "text/json", result);
 }
 
 void onGetTemp() {
@@ -61,6 +74,8 @@ void onGetTemp() {
   byte data[40] = {0};
   if (dht11.read(dht_pin, &temperature, &humidity, data)) {
     Serial.print("Read DHT11 failed");
+    server.send(400, "text/json", "{ \"error\": \"DHT not found\"} ");
+    return;
   }
 
   DynamicJsonDocument doc(100);
@@ -79,33 +94,26 @@ void on404() {
   Serial.println(server.uri());
   server.send(404, "text/html", "{ \"not_found\": \"not found\"} ");
 }
-
-void onBtn() {
-  boolean currentState = digitalRead(btn_pin);
-
-  if (currentState != btnState) {
-    btnState = currentState;
-    Serial.println(btnState);
-    digitalWrite(16, btnState);
-  }
-}
  
 void setup() 
 {
       Serial.begin(9600);
       delay(10);
       pinMode(actions.lightPulpPin, OUTPUT);
+      pinMode(red_pin, OUTPUT);
+      pinMode(blue_pin, OUTPUT);
+      pinMode(green_pin, OUTPUT);
       digitalWrite(actions.lightPulpPin, actions.lightPulpPinState);
                
-       Serial.println("Connecting to ");
-       Serial.println(ssid); 
- 
-       WiFi.begin(ssid, pass); 
-       while (WiFi.status() != WL_CONNECTED) 
-          {
-            delay(500);
-            Serial.print(".");
-          }
+      Serial.println("Connecting to ");
+      Serial.println(ssid); 
+      WiFi.hostname("Smart home");
+      WiFi.begin(ssid, pass); 
+      while (WiFi.status() != WL_CONNECTED) 
+        {
+          delay(500);
+          Serial.print(".");
+        }
       Serial.println("");
       Serial.println("WiFi connected"); 
       server.onNotFound(on404);
@@ -122,6 +130,6 @@ void setup()
  
 void loop() 
 {      
-  onBtn();
   server.handleClient();
+  rgbController.tick();
 }

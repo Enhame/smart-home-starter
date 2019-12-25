@@ -21,8 +21,9 @@
 			}
 		});
 
-	function InstantiateUrls ($window, settings) {
+	function InstantiateUrls ($window, settings, urlHelper) {
 		var endpoints = this.endpoints;
+		var devMode = urlHelper.getUrlParam($window, 'dev');
 
 			function api(name) {
 				var endpoint = endpoints[name];
@@ -35,10 +36,10 @@
 					apiUrl = endpoint.api,
 					rawUrl = angular.isString(apiUrl) ? apiUrl : apiUrl.apply({}, args);
 
-				if (settings.testMode || endpoint.isMocked) {
-					return rawUrl;
+				if (devMode) {
+					return settings.apiUrl + '/' + rawUrl;
 				}
-				return settings.apiUrl + '/' + rawUrl;
+				return rawUrl;
 			}
 
 			function mock(name) {

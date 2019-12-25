@@ -19,7 +19,7 @@
 		}
 
 		browserSync.instance = browserSync.init(files, {
-			startPath: '/',
+			startPath: '/?dev=1',
 			server: {
 				baseDir: baseDir,
 				middleware: middleware,
@@ -32,7 +32,7 @@
 	}
 
 	gulp.task('serve', function () {
-		runSequence('watch', '_serve', 'jsx');
+		runSequence('watch', '_serve', 'json');
 	});
 
 	gulp.task('serve_mock', function () {

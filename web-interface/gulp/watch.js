@@ -15,10 +15,4 @@
 		], ['inject']);
 	});
 
-	gulp.task('__jsxw', ['jsx'], function () {
-		gulp.watch([
-			paths.src + '/{app,components,partials}/**/*.jsx'
-		], ['jsx']);
-	});
-
 }());

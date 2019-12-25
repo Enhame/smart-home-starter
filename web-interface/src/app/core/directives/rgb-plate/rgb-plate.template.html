@@ -1,17 +1,20 @@
-<div class="lamp-plate device-plate">
+<div class="rgb-plate device-plate">
 	<div class="mdl-card mdl-shadow--2dp">
 		<div class="mdl-card__title">
-			<h2 class="mdl-card__title-text">Light pulp</h2>
+			<h2 class="mdl-card__title-text">Rgb</h2>
 		</div>
 		<div class="mdl-card__supporting-text">
 			This is a simple light pulp just to demonstrate controller in action, just switch toggle on and off to see what will happen...
 		</div>
-		<div class="mdl-card__actions mdl-card--border">
+		<div class="mdl-card__actions mdl-card--border display-flex">
 			<div class="switch-container">
 				<toggle-switch
 					ng-model="vm.switchState"
 					class="switch-mini">
 				</toggle-switch>
+			</div>
+			<div class="switch-container">
+				<color-picker  options="vm.options" event-api="vm.eventApi" ng-model="vm.rgbColor"></color-picker>
 			</div>
 		</div>
 		<div class="mdl-card__menu">

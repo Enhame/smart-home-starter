@@ -1,0 +1,15 @@
+{
+	"actions": [
+		{
+			"deviceType": "rgb",
+			"actions": [
+				"switch",
+				"recolor"
+			],
+			"state": false,
+			"red": 1023,
+			"green": 1023,
+			"blue": 1023
+		}
+	]
+}

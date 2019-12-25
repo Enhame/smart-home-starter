@@ -4,18 +4,16 @@
 	var gulp = require('gulp');
 
 	var paths = gulp.paths;
-	var react = require('gulp-react');
 
 	var $ = require('gulp-load-plugins')();
 
 	var wiredep = require('wiredep').stream;
 
-	gulp.task('jsx', function () {
+	gulp.task('json', function () {
 		gulp.src([
-			paths.src + '/app/**/*.jsx'
+			paths.src + '/app/config.json'
 		])
-		.pipe(react())
-		.pipe(gulp.dest(paths.src + '/app'));
+		.pipe(gulp.dest(paths.dist + '/'));
 	});
 
 	gulp.task('inject', ['styles', 'eslint'], function () {
