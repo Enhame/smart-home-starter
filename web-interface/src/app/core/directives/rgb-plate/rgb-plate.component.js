@@ -40,8 +40,7 @@
 		function init() {
 			vm.isLoading = true;
 			vm.switchState = vm.config.state;
-			var colors = [vm.config.red, vm.config.green, vm.config.blue].join(',');
-			vm.rgbColor = 'rgb(' + colors + ')';
+			vm.rgbColor = `rgb(${vm.config.red},${vm.config.green},${vm.config.blue})`;
 		}
 
 		function onColorPick(api, color, event) {

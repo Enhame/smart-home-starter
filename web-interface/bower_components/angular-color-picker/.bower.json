@@ -14,8 +14,8 @@
     "Benjamin Orozco <benoror@gmail.com>"
   ],
   "main": [
-    "dist/angularjs-color-picker.min.js",
-    "dist/angularjs-color-picker.min.css"
+    "dist/angularjs-color-picker.js",
+    "dist/angularjs-color-picker.css"
   ],
   "moduleType": [
     "globals"
@@ -47,6 +47,5 @@
   },
   "_source": "https://github.com/ruhley/angular-color-picker.git",
   "_target": "^3.4.8",
-  "_originalSource": "angularjs-color-picker",
-  "_direct": true
+  "_originalSource": "angularjs-color-picker"
 }

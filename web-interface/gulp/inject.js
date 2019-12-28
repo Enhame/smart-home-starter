@@ -5,6 +5,8 @@
 
 	var paths = gulp.paths;
 
+	var babel = require('gulp-babel');
+
 	var $ = require('gulp-load-plugins')();
 
 	var wiredep = require('wiredep').stream;
@@ -33,6 +35,9 @@
 			'!' + paths.src + '/{app,components}/**/*.spec.js',
 			'!' + paths.src + '/app/**/testHelpers/*.js'
 		])
+			.pipe(babel({
+				presets: ['@babel/preset-env']
+			}))
 			.pipe($.angularFilesort());
 
 		var injectOptions = {

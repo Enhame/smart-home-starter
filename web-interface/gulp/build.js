@@ -5,7 +5,7 @@
 	var del = require('del');
 	var runSequence = require('run-sequence');
 	var addsrc = require('gulp-add-src');
-	var uglify = require('gulp-uglify');
+	var uglify = require('gulp-uglify-es').default;
 	//var uncss = require('gulp-uncss');
 	var print = require('gulp-print');
 
@@ -51,8 +51,9 @@
 			.pipe($.rev())
 			.pipe(print())
 			.pipe(jsFilter)
+			.pipe(print())
 			.pipe($.ngAnnotate())
-			.pipe($.uglify({ preserveComments: $.uglifySaveLicense}))
+			.pipe(uglify())
 			.pipe(jsFilter.restore())
 			.pipe(cssFilter)
 			.pipe($.replace('../bootstrap-sass-official/assets/fonts/bootstrap', 'fonts'))
