@@ -2,7 +2,7 @@
 	<div ng-repeat="action in vm.actions">
 		<div>
 			<lamp-plate ng-if="action.deviceType === vm.deviceTypes.lightPulp"></lamp-plate>
-			<rgb-plate ng-if="action.deviceType === vm.deviceTypes.rgb"></rgb-plate>
+			<rgb-plate config="action" ng-if="action.deviceType === vm.deviceTypes.rgb"></rgb-plate>
 		</div>
 	</div>
 </div>

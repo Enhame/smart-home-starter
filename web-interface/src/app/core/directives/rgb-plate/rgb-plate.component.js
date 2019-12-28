@@ -11,7 +11,9 @@
 			controller: rgbPlateCtrl,
 			replace: true,
 			controllerAs: 'vm',
-			scope: {},
+			scope: {
+				config: '='
+			},
 			bindToController: true
 		};
 	}
@@ -23,7 +25,8 @@
 		vm.rgbColor = '';
 		vm.options = {
 			pos: 'top right',
-			format: 'rgb'
+			format: 'rgb',
+			alpha: false
 		};
 
 		vm.eventApi = {
@@ -36,6 +39,9 @@
 
 		function init() {
 			vm.isLoading = true;
+			vm.switchState = vm.config.state;
+			var colors = [vm.config.red, vm.config.green, vm.config.blue].join(',');
+			vm.rgbColor = 'rgb(' + colors + ')';
 		}
 
 		function onColorPick(api, color, event) {

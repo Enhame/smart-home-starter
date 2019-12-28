@@ -19,12 +19,14 @@ ActionsResponse actions;
 
 boolean btnState = false;
 
+boolean reconnectingStatus = false;
+
 SimpleDHT11 dht11(dht_pin);
 WiFiClient client;
 ESP8266WebServer server(80);
 JsonConfigManager configManager;
 HTTPMethod methods;
-RGBController rgbController(red_pin, green_pin, blue_pin);
+RGBController rgbController;
 
 File readFile(String path) {
   Serial.print("requested file: ");
@@ -42,7 +44,6 @@ void onHome() {
 }
 
 void onAction() {
-  server.sendHeader("Access-Control-Allow-Origin", "*");
   StaticJsonDocument<500> doc;
   Serial.println(server.arg("plain"));
   DeserializationError error = deserializeJson(doc, server.arg("plain"));
@@ -56,12 +57,13 @@ void onAction() {
     rgbController.handleRequest(doc);
   }
 
+  server.sendHeader("Access-Control-Allow-Origin", "*");
   server.send(200);
 }
 
 void onActionsList() {
   server.sendHeader("Access-Control-Allow-Origin", "*");
-  StaticJsonDocument<44000> config = configManager.getConfig();
+  StaticJsonDocument<10000> config = configManager.getConfig();
   String result;
   serializeJson(config, result);
   Serial.println(result);
@@ -91,20 +93,26 @@ void onGetTemp() {
 }
 
 void on404() {
-  Serial.println(server.uri());
-  server.send(404, "text/html", "{ \"not_found\": \"not found\"} ");
+    if (server.method() == HTTP_OPTIONS)
+    {
+        server.sendHeader("Access-Control-Allow-Origin", "*");
+        server.sendHeader("Access-Control-Max-Age", "10000");
+        server.sendHeader("Access-Control-Allow-Methods", "PUT,POST,GET,OPTIONS");
+        server.sendHeader("Access-Control-Allow-Headers", "*");
+        server.send(204);
+    }
+    else
+    {
+      Serial.println(server.uri());
+      server.send(404, "text/html", "{ \"not_found\": \"not found\"} ");
+    }
 }
  
 void setup() 
 {
+      SPIFFS.begin();
       Serial.begin(9600);
       delay(10);
-      pinMode(actions.lightPulpPin, OUTPUT);
-      pinMode(red_pin, OUTPUT);
-      pinMode(blue_pin, OUTPUT);
-      pinMode(green_pin, OUTPUT);
-      digitalWrite(actions.lightPulpPin, actions.lightPulpPinState);
-               
       Serial.println("Connecting to ");
       Serial.println(ssid); 
       WiFi.hostname("Smart home");
@@ -116,6 +124,7 @@ void setup()
         }
       Serial.println("");
       Serial.println("WiFi connected"); 
+      rgbController.initConfig();
       server.onNotFound(on404);
       server.on("/", onHome);
       server.on("/actions", HTTP_POST, onAction);
@@ -124,7 +133,6 @@ void setup()
 
 
       server.serveStatic("/", SPIFFS, "/", "max-age=86400");
-      SPIFFS.begin();
       server.begin(80);
 }
  

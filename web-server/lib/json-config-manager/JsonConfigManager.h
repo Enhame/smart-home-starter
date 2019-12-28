@@ -6,8 +6,8 @@
 class JsonConfigManager {
   public:
     JsonConfigManager();
-    StaticJsonDocument<44000> getConfig();
-
+    StaticJsonDocument<10000> getConfig();
+    void saveJsonConfig(StaticJsonDocument<10000>& _config);
 };
 
 #endif

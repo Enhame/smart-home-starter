@@ -32,7 +32,8 @@
 			paths.src + '/{app,components}/**/*.js',
 			'!' + paths.src + '/{app,components}/**/*.spec.js',
 			'!' + paths.src + '/app/**/testHelpers/*.js'
-		]).pipe($.angularFilesort());
+		])
+			.pipe($.angularFilesort());
 
 		var injectOptions = {
 			ignorePath: [paths.src, paths.tmp + '/serve'],

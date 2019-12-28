@@ -1,15 +1,18 @@
 {
-	"actions": [
-		{
-			"deviceType": "rgb",
-			"actions": [
-				"switch",
-				"recolor"
-			],
-			"state": false,
-			"red": 1023,
-			"green": 1023,
-			"blue": 1023
+	"rgb": {
+		"deviceType": "rgb",
+		"actions": [
+			"switch",
+			"recolor"
+		],
+		"state": false,
+		"red": 255,
+		"green": 5,
+		"blue": 255,
+		"pins": {
+			"red_pin": 15,
+			"green_pin": 12,
+			"blue_pin": 13
 		}
-	]
+	}
 }

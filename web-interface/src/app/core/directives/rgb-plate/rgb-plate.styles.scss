@@ -25,6 +25,7 @@
 		padding: 5px 10px 5px 10px;
 		border-radius: 25px;
 		display: inline-block;
+		margin-right: 40px;
 	}
 
 	.ats-switch.switch-mini {
@@ -33,5 +34,16 @@
 
 	.ats-switch span.switch-left {
 		background-color: $c-primary;
+	}
+
+	.color-picker-input {
+		display: none !important;
+	}
+
+	.color-picker-wrapper .input-group .input-group-addon:first-child {
+		border-radius: 15px;
+		border-right-width: 0;
+		height: 6px;
+		width: 15px;
 	}
 }

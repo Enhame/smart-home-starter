@@ -5,20 +5,21 @@
 
 class RGBController {
   public:
-    RGBController(int r_pin, int g_pin, int b_pin);
+    RGBController();
 
     boolean switchState = false;
 
-    int redPin;
-    int bluePin;
-    int greenPin;
+    uint8_t redPin;
+    uint8_t bluePin;
+    uint8_t greenPin;
 
-    int greenColor = 255;
-    int redColor = 255;
-    int blueColor = 255;
+    int greenColor;
+    int redColor;
+    int blueColor;
 
-    void setColors(int r, int g, int b);
-    void setSwitchState(boolean state);
+    void setColors(int r, int g, int b, boolean save);
+    void setSwitchState(boolean state, boolean save);
+    void initConfig();
     void handleRequest(StaticJsonDocument<500>& _doc);
     void tick();
 
